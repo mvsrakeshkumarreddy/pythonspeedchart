@@ -1,0 +1,8 @@
+git init
+git status
+git add .
+git commit -m "comment"
+#git remote add origin https://<personal access token>@github.com/<username>/<repositoryname>.git
+git remote add origin https://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@github.com/mvsrakeshkumarreddy/pythonspeedchart.git
+git push origin master
+git push origin master --force
