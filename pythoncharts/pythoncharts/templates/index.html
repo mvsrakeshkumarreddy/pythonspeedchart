@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<h1>Hello puli</h1>
+
+<div ng-app="chartApp" ng-controller="myCtrl">
+ 
+<form action="" method="POST">
+	{% csrf_token %}
+	<label>Please enter starting station:</label><br>
+    <input type="text" name="ststn">
+    <br>
+    <label>Please enter Distance values:</label><br>
+	<textarea ng-model="distlist" ng-list="&#10;" ng-trim="false" name="distlist"></textarea>
+    <br>
+    <label>Please enter Speed values:</label><br>
+	<textarea ng-model="spdlist" ng-list="&#10;" ng-trim="false" name="spdlist"></textarea>
+    <br>
+    <input type="submit" value="submit">
+</form>
+<!--
+<p>Welcome {{today}}</p>
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p ng-bind="list1"></p>
+  <input type="submit" ng-click=check() value="submit">
+
+<textarea ng-model="list1" ng-list="&#10;" ng-trim="false"></textarea>
+
+</div>
+
+<p>Welcome to my first Django project! {{minvalue}}</p>
+<p>you have entered  {{inputvalue}}</p>
+-->
+<img src='data:image/png;base64,{{ chart }}' alt="" id="img">
+<!--
+<form action = "" method = "POST">
+	{% csrf_token %}
+	<label for="ivalue">Your name: </label>
+	<input id="ivalue" type="text" name="ivalue">
+	<input type="submit" value="OK">
+</form>
+-->
+<script>
+var app = angular.module('chartApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.name= "Rakesh";
+  $scope.check = function()
+  {
+  	$scope.yes = true;
+  };
+  
+});
+</script>
+</body>
+</html>
