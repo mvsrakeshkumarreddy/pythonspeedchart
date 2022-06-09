@@ -6,21 +6,55 @@
 <h1>Hello puli</h1>
 
 <div ng-app="chartApp" ng-controller="myCtrl">
- 
+<!--
+<input type="text" name="something" value="{{ today }}">
+ -->
 <form action="" method="POST">
-	{% csrf_token %}
-	<label>Please enter starting station:</label><br>
-    <input type="text" name="ststn">
+<div ng-show = showdistspdform>
+  
+  {% csrf_token %}
+  <label>Please enter starting station:</label><br>
+    <input type="text" name="ststn" required="required" value="{{ sstn }}">
     <br>
     <label>Please enter Distance values:</label><br>
-	<textarea ng-model="distlist" ng-list="&#10;" ng-trim="false" name="distlist"></textarea>
+  <textarea ng-model="distlist" ng-list="&#10;" ng-trim="false" name="distlist" required="required"></textarea>
     <br>
     <label>Please enter Speed values:</label><br>
-	<textarea ng-model="spdlist" ng-list="&#10;" ng-trim="false" name="spdlist"></textarea>
+  <textarea ng-model="spdlist" ng-list="&#10;" ng-trim="false" name="spdlist" required="required"></textarea>
+    <br>
+    <input type="checkbox" name="spmtype" value="telpro">
+  <label>Distance values whether of type incrementive</label><br>
+    <label>Would you like to enter from to plot details</label>
+    <input type = "checkbox" ng-model = "enterplot" value="Enter from to plot details" ng-click = distspdvalues() ng-disabled = "enterplotdisabled"><br>
+    <div ng-show = "showfullgraphdiv">
+    <label>Would you like to show full graph</label>
+    <input type = "checkbox" ng-model = "showfullgraph" value="Enter from to plot details" ng-click = showfullgraphfun()>
+    </div>
+
+<br>
+<br>
+  <button type="submit" value="submit" ng-show = "showfullgraph">Show full graph</button><br>
+</div>
+
+<div ng-show = showplotinput>
+  <label>Please enter starting station for which plot is required:</label><br>
+    <input type="text" name="pltststn" required="required" ng-model = "pltststn" ng-disabled = "!showplotinput">
+    <br>
+    <label>Please enter ending station for which plot is required:</label><br>
+    <input type="text" name="pltendstn" required="required" ng-model = "pltendstn" ng-disabled = "!showplotinput">
     <br>
     <input type="submit" value="submit">
+</div>
+
 </form>
 <!--
+
+<textarea ng-model="signalkm" ng-list="&#10;" ng-trim="false"></textarea>
+<p ng-bind="signalkm"></p>
+
+
+<textarea ng-model="signalname" ng-list="&#10;" ng-trim="false"></textarea>
+<p ng-bind="signalname"></p>
 <p>Welcome {{today}}</p>
   <p>Name: <input type="text" ng-model="name"></p>
   <p ng-bind="list1"></p>
@@ -42,10 +76,77 @@
 	<input type="submit" value="OK">
 </form>
 -->
+
 <script>
 var app = angular.module('chartApp', []);
 app.controller('myCtrl', function($scope) {
   $scope.name= "Rakesh";
+  $scope.showdistspdform = true;
+  $scope.showplotinput = false;
+  $scope.enterplotdisabled = false;
+  $scope.showfullgraphdiv = true;
+
+  $scope.distspdvalues = function()
+  {
+    if ($scope.enterplot == true)
+    {
+      $scope.showfullgraphdiv = false;
+      $scope.showfullgraph = false;
+      $scope.showplotinput  = true;
+    }
+    if ($scope.enterplot == false)
+    {
+      $scope.showfullgraphdiv = true;
+      $scope.showfullgraph = false;
+      $scope.showplotinput  = false;
+    }
+    //$scope.showdistspdform = false;
+    
+  };
+  $scope.firstcheck = function()
+  {
+    if ($scope.enterplotagain == true)
+    {
+      $scope.startfrombegin = false;
+    }
+  };
+  $scope.secondcheck  = function()
+  {
+    if ($scope.startfrombegin == true)
+    {
+      $scope.enterplotagain = false;
+    }
+  };
+  $scope.distspdvaluesinv = function()
+  {
+    $scope.repeatselect = true;
+  };
+  $scope.repeatfunction = function()
+  {
+    if ($scope.enterplotagain == true)
+    {
+      $scope.repeatselect = false;
+      $scope.showplotinput = true;
+    }
+    if ($scope.startfrombegin == true)
+    {
+      $scope.repeatselect = false;
+      $scope.showdistspdform = true;
+    }
+  };
+  $scope.showfullgraphfun  = function()
+  {
+      if ($scope.enterplotdisabled == true)
+      {
+
+        $scope.enterplotdisabled = false;
+      }
+      else if ($scope.enterplotdisabled == false)
+      {
+
+        $scope.enterplotdisabled = true;
+      }
+  };
   $scope.check = function()
   {
   	$scope.yes = true;
