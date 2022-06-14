@@ -6,3 +6,4 @@ git commit -m "comment"
 git remote add origin https://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@github.com/mvsrakeshkumarreddy/pythonspeedchart.git
 git push origin master
 git push origin master --force
+done
