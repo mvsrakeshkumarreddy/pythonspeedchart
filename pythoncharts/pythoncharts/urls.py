@@ -16,12 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 #from django.urls import include
-from pythoncharts.views import chartcreation
-
+from pythoncharts.views import chartcreation,registerview,dashboardview
+from pythoncharts.someview import something
+from django.contrib.auth.views import LoginView,LogoutView
+#from pythoncharts.registerview import register_request
 
 
 
 urlpatterns = [
     #path('', views.chartcreation, name='chartcreation'),
+    path('', dashboardview),
     path('pythoncharts/', chartcreation),
+    path('some/', something),
+    path('login/',LoginView.as_view(), name = "login"),
+    path('register/', registerview, name = "register"),
+    path('admin/', admin.site.urls),
+    path('logout/',LogoutView.as_view(), name = "logout"),
+    #path('register/', register_request, name="register"),
 ]

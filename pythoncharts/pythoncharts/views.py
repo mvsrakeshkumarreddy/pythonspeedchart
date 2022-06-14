@@ -13,6 +13,11 @@ from datetime import datetime, timedelta, timezone, tzinfo
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url = '/login')
+
 def chartcreation (request) :
     print(request.method)
     if request.method == "GET":
@@ -301,3 +306,19 @@ def chartcreation (request) :
         #inputvalue = request.POST
         #return render(request, "index.html", {"minvalue" : minvalue, "today" : today, "chart" : chart, "inputvalue" : inputvalue})
         return render(request, "index.html", {"minvalue" : minvalue, "today" : today, "chart" : chart, "sstn" : sstn, "slist" : slist, "dlist" : dlist})
+"""
+def indexview(request):
+    return render(request,'index.html')
+"""
+def dashboardview(request):
+    return render(request,'someindex.html')
+
+def registerview(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'someindex.html')
+    else:
+        form = UserCreationForm()
+    return render(request,'registration/register.html',{"form":form})

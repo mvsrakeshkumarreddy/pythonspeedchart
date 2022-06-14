@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html>
+{% extends 'someindex.html' %}
+
+{% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+{% if user.is_authenticated %}
+<h1>Hello {{user.username}}</h1>
+<a href="{% url 'logout' %}">logout</a>
 <body>
 
-<h1>Hello puli</h1>
+
 
 <div ng-app="chartApp" ng-controller="myCtrl">
 <!--
@@ -155,4 +161,9 @@ app.controller('myCtrl', function($scope) {
 });
 </script>
 </body>
-</html>
+{% else %}
+<a href="{% url 'login_url' %}">Login</a>
+<a href="{% url 'register_url' %}">Register</a>
+
+{% endif %}
+{% endblock %}
