@@ -1,9 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>something</title>
-</head>
-<body>
+
+
+
+{% include 'applayout.html' %}
+
+{% block content %}
+
+  <body>
+  <div style="text-align: center;">
+  	
+<h1>Home page</h1>
+
+
+  </div>
+
+
+
+
+  
+  </body>
+{% endblock %}
+
 
 <!--
 <table border="1" width="600">
@@ -21,19 +37,4 @@
 <img src='data:image/png;base64,{{ chart }}' alt="" id="img">
 -->
 
-	{% block content %}
-		<h1>Hello puli</h1>
-	
 
-		{% if user.is_authenticated %}
-		<h1>Hello {{user.username}}</h1>
-		<a href="/logout">logout</a><br>
-		<a href="/pythoncharts">Generate SPM chart</a>
-		{% else %}
-		<a href="/login">Login</a>
-		<a href="/register">Register</a>
-		{% endif %}
-	{% endblock %}
-
-</body>
-</html>

@@ -27,10 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#AUTH_USER_MODEL = 'auth.User'
+
+#AUTH_USER_MODEL = 'spm.CustomUser'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'spm',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pythoncharts'
 ]
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

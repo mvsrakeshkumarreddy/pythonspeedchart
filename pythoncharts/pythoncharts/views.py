@@ -15,6 +15,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from .forms import RegisterUserForm
+from django.contrib.auth import login,authenticate
 
 @login_required(login_url = '/login')
 
@@ -315,10 +317,14 @@ def dashboardview(request):
 
 def registerview(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            pwd=form.cleaned_data.get('password1')
+            user = authenticate(username=username,password=pwd)
+            login(request,user)
             return render(request,'someindex.html')
     else:
-        form = UserCreationForm()
+        form = RegisterUserForm()
     return render(request,'registration/register.html',{"form":form})
