@@ -1,23 +1,49 @@
 {% extends 'applayout.html' %}
 
 {% block content %}
+
+<style type="text/css">
+	.focused{
+		outline: 0 !important;
+		box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%)  !important;
+	}
+
+	.errorlist li {
+		color: red;
+	}
+</style>
 	  <div class="d-grid gap-2">
   <button class="btn btn-primary" type="button">Register</button>
 </div>
 <br>
+
+
+<div class="container">
+  <div class="row justify-content-md-center">
+<div class="row">
+<table class="table table-bordered">
+<form method="POST">
+{% csrf_token %}
+{{form.as_table}}
+<tr>
+	<td colspan="2">
+		<input type="submit" value="Register" class="btn btn-primary">
+
+		<a href="/login"><button type="button" class="btn btn-primary">Login</button></a>
+	</td>
+</tr>
+	
+</form>
+	
+</table>
+	
+</div>
+</div>
+</div>
 	<form method="POST">
 		
 		{% csrf_token %}
-		  {% for field in form %}
-        {{ field.label_tag }}<br>
-        {{ field }}
-       
-       
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
+		  
 		
 		<button>Register</button>
 		<a href="/login"><button type="button" >Login</button></a>
@@ -53,5 +79,16 @@
   
   </div>
 </div>
+{% for field in form %}
+        {{ field.label_tag }}<br>
+        {{ field }}
+       
+       
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+
 -->
 {% endblock %}
