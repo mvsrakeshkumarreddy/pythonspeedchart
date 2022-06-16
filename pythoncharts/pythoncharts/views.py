@@ -130,6 +130,9 @@ def chartcreation (request) :
         print(plotsignalname)
         x=plotsignalname
         y=plotsignalspeed
+        graphsize = (len(plotsignalname))/2
+        if graphsize>100:
+            graphsize = 50
         """
         highlightx = stn
         highlighty = spd
@@ -143,7 +146,7 @@ def chartcreation (request) :
         """
 
         graphtitle = "Speedometer graph between "+plotststn+" and "+plotendstn
-        plt.figure(figsize=(12,5.9))
+        plt.figure(figsize=(graphsize,6))
         plt.xlabel("Name of the Signal")
         plt.ylabel("Speed in (KMPH)")
         plt.title(graphtitle)
@@ -283,8 +286,12 @@ def chartcreation (request) :
         #highlight = list(highlight)
         #print (highlightx)
         #print(annot)
+        
+        #graphsizef = (len(list2))/500
+        
+        graphsizef = 50
 
-        plt.figure(figsize=(9,6))
+        plt.figure(figsize=(graphsizef,6))
         plt.xlabel("Distance in (KM)")
         plt.ylabel("Speed in (KMPH)")
         plt.title("Speedometer graph")
