@@ -320,10 +320,10 @@ def registerview(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            pwd=form.cleaned_data.get('password1')
-            user = authenticate(username=username,password=pwd)
-            login(request,user)
+            """username = form.cleaned_data.get('username')
+                                                pwd=form.cleaned_data.get('password1')
+                                                user = authenticate(username=username,password=pwd)
+                                                login(request,user)"""
             return render(request,'someindex.html')
     else:
         form = RegisterUserForm()

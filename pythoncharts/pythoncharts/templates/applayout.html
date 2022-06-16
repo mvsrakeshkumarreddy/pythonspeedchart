@@ -52,7 +52,10 @@
             My Account
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item fw-semibold" style="text-transform: capitalize;" href="/">{{user.username}}</a></li>
+            <li><a class="dropdown-item fw-semibold" style="text-transform: capitalize;" href="/">{{user.full_name}}</a></li><hr>
+            <li><a class="dropdown-item fw-semibold" style="text-transform: capitalize;" href="/">Crew ID :{{user.crew_ID}}</a></li><hr>
+            <li><a class="dropdown-item fw-semibold" style="text-transform: capitalize;" href="/">{{user.email}}</a></li><hr>
+
             <li><a class="dropdown-item fw-semibold" href="/logout">Logout</a></li>
             <!--
             <li><hr class="dropdown-divider"></li>

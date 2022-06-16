@@ -3,6 +3,6 @@ git status
 git add .
 git commit -m "comment"
 #git remote add origin https://<personal access token>@github.com/<username>/<repositoryname>.git
-git remote add origin https://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@github.com/mvsrakeshkumarreddy/pythonspeedchart.git
+git remote add origin https://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@github.com/mvsrakeshkumarreddy/pythonspeedchart.git
 git push origin master
 git push origin master --force
